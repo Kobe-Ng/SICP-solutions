@@ -18,3 +18,12 @@
 				(if (= count max-count)
 					f-1
 					(f-iter (+ f-1 (* 2 f-2) (* 3 f-3)) f-1 f-2 (+ count 1) max-count)))))
+
+;;;1.12
+(define (Pascals-triangle row position)
+	(cond ((= position 1) 1)
+		  ((= position (+ row 1)) 1)
+		  (else
+		  		(+ 
+		  			(Pascals-triangle (- row 1) position)
+		  			(Pascals-triangle(- row 1) (- position 1))))))
