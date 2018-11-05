@@ -26,4 +26,16 @@
 		  (else
 		  		(+ 
 		  			(Pascals-triangle (- row 1) position)
-		  			(Pascals-triangle(- row 1) (- position 1))))))
+		  			(Pascals-triangle (- row 1) (- position 1))))))
+
+;;;1.16
+(define (fast-expt b n)
+	(fast-expt-iterative b n 1))
+
+(define (fast-expt-iterative b n result)
+	(cond((= n 0) result)
+		 ((even? n) (fast-expt-iterative (* b b) (/ n 2) result))
+		 (else (fast-expt-iterative b (- n 1) (* b result)))))
+
+(define (even? n)
+	(= (remainder n 2) 0))
