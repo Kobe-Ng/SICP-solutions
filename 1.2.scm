@@ -39,3 +39,17 @@
 
 (define (even? n)
 	(= (remainder n 2) 0))
+
+;;;1.18
+(define (double x)
+	(+ x x))
+
+;; Could throw an error or something if x is not even but I don't think it's relevant
+(define (halve x)
+	(/ x 2))
+
+(define (fast-* a b)
+	(cond ((= b 1) a)
+		((even? b) (fast-* (double a) (halve b)))
+		(else (+ a (fast-* a (- b 1))))))
+
