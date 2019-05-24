@@ -38,12 +38,12 @@
 			(sum new-f 0 inc n))))
 
 ;;;1.30
-(define (iterative-sum sum term a next b)
+(define (iterative-sum term a next b)
  	(define (iter a result)
 		(if (> a b)
 			result
-			(iter (next a) (+ result (term a))))
-	(iter a 0)))
+			(iter (next a) (+ result (term a)))))
+	(iter a 0))
 
 ;;; 1.31a
 (define (product term a next b)
@@ -51,5 +51,13 @@
   		1
   		(* (term a)
   			(product term (next a) next b))))
+
+;;; 1.31b
+(define (iterative-product term a next b)
+	(define (iter a result)
+	 	(if (> a b)
+	  		result
+     		(iter (next a) (* result (term a)))))
+	(iter a 1))
 
 
