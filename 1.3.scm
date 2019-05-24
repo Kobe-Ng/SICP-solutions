@@ -52,6 +52,13 @@
   		(* (term a)
   			(product term (next a) next b))))
 
+(define (pi/4-approx terms)
+	(define (term x)
+	 	(if (even? x)
+	  		(/ (+ 2.0 x) (+ 1 x))
+	  		(/ (+ 1.0 x) (+ 2 x))))
+	(product term 1 inc terms))
+
 ;;; 1.31b
 (define (iterative-product term a next b)
 	(define (iter a result)
