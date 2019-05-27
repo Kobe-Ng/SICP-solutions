@@ -31,12 +31,40 @@
           		(try next))))
   	(try first-guess))
 
-;;; takes 34 steps
+;;; This method takes 34 steps to termintae
 (fixed-point-p (lambda (x) (/ (log 1000) (log x)))
 				2)
 
 (define (average a b)
 	(/ (+ a b) 2))
 
-;;; takes 9 steps with average damping
+;;; Adding average damping reduces the method to 9 steps.
 (fixed-point-p (lambda (x) (average x (/ (log 1000) (log x)))) 2)
+
+;;; 1.37
+(define (cont-frac n d k)
+	(define (cont-frac-helper n d i k)
+		(/ (n i) 
+			(+ (d i)
+			(if (= i k)
+				0
+				(cont-frac-helper n d (+ 1 i) k)))))
+	(cont-frac-helper n d 1 k))
+
+(/ 1 (cont-frac 
+	(lambda (i) 1.0) 
+	(lambda (i) 1.0)
+	50))
+
+;;; 1.37b
+(define (iterative-cont-frac n d k)
+	(define (iterative-cont-frac-helper result n d i k)
+		(if (= i 0)
+			result
+			(iterative-cont-frac-helper (/ (n i) (+ (d i) result)) n d (- i 1) k)))
+	(iterative-cont-frac-helper (/ (n k) (d k)) n d (- k 1) k))
+
+(/ 1 (iterative-cont-frac 
+	(lambda (i) 1.0) 
+	(lambda (i) 1.0)
+	50))
