@@ -68,3 +68,5 @@
 	(lambda (i) 1.0) 
 	(lambda (i) 1.0)
 	50))
+
+;;; 1.38, and 1.39 are skipped as they just use 1.37 with a new function to create n and d. They aren't very interesting.
