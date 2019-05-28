@@ -31,7 +31,7 @@
           		(try next))))
   	(try first-guess))
 
-;;; This method takes 34 steps to termintae
+;;; This method takes 34 steps to terminate
 (fixed-point-p (lambda (x) (/ (log 1000) (log x)))
 				2)
 
