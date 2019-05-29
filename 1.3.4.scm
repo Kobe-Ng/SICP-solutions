@@ -42,6 +42,17 @@
     (lambda (x) ((compose f (repeated f (- n 1))) x))))
 
 ;;; 1.44
+(define (smooth f)
+  (lambda (x) 
+    (let ((dx 0.0001))
+      (/ 
+        (+ (f (+ x dx))
+           (f x)
+           (f (- x dx))
+        3)))))
+
+(define (n-fold-smooth f n)
+  (lambda (x) (((repeated smooth n) f) x))
 
 
   
