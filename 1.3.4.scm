@@ -52,7 +52,37 @@
         3)))))
 
 (define (n-fold-smooth f n)
-  (lambda (x) (((repeated smooth n) f) x))
+  (lambda (x) (((repeated smooth n) f) x)))
+
+;;; I am skipping 1.45, it does not seem very interesting
+
+;;; 1.46
+
+(define (iterative-improve good-enough? improve)
+  (define (iter guess)
+    (if (good-enough? guess)
+        guess
+        (iter (improve guess))))
+  (lambda (guess) (iter guess)))
+
+(define (sqrt x)
+  (define (square x)
+    (* x x))
+  (define (average x y)
+    (/ (+ x y) 2))
+  (define (improve guess)
+    (average guess (/ x guess)))
+  (define (good-enough? guess)
+    (< (abs (- (square guess) x)) 0.001))
+  ((iterative-improve good-enough? improve) 1.0))
+
+(define (fixed-point f guess)
+  (define (close-enough? v1 v2)
+    (let ((tolerance 0.00001))
+      (< (abs (- v1 v2)) tolerance)))
+  (let ((good-enough? (lambda (x) (close-enough? x (f x))))
+        (improve f))
+((iterative-improve good-enough? improve) guess)))
 
 
   
