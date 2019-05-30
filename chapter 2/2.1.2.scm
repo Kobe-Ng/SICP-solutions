@@ -30,3 +30,9 @@
         (y-point (start-segment line))
     	(y-point (end-segment line)))
      2)))
+
+
+;;; Skipping 2.3 because I have done rectangles a thousand times. 
+;;; In general chapter 1 was interesting from the beginning as I had not done much recursion,
+;;; but I have done data representation, so the start of this chapter is boring.
+;;; You can represent rectangles with a point, width, and height; or with two points on opposite corners.
