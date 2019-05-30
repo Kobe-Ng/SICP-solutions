@@ -1,13 +1,3 @@
-;;; 2.1
-
-(define (make-rat n d)
-  (define (sign x)
-    (if (> x 0)
-      +
-  	  -))
-	(let ((g (gcd n d)))
-		(cons ((sign (* n d)) (abs (/ n g))) (abs (/ d g)))))
-
 ;;; 2.2
 
 (define (make-point x y)
