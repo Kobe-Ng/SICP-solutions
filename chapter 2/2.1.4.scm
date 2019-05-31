@@ -50,3 +50,5 @@
                      (/ 1.0 (lower-bound y))))
     (display "error: dividing an interval that spans 0")
   ))
+
+;;; 2.11 Skipped because it seems more tedious than instructional
