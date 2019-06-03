@@ -67,3 +67,18 @@
 (define (percent interval)
   (* 100 (/ (width interval) (center interval))))
 
+;;; 2.13
+
+;;; Every value is positive so the formula for
+;;; the result of multiplication is easy to write down
+;;; c represents the centre, p is the percent error.
+;;; 1 and 2 denote if it's the first interval or second.
+;;; ((c1-p1*c1)*(c2-p2*c2),(c1+p1*c1)*(c2+p2*c2))
+;;; = (c1c2-c1c2p2-c2c1p1+c1c2p1p2, c1c2+c1c2p2+c2c1p1+c1c2p1p2)
+
+;;; We now want to calculate the percent of this interval:
+;;; width/center.
+;;; I wrote simplified this on a separate sheet of paper.
+;;; Assuming p1*p2 vanishes (percents are small),
+;;; p3 = p1+p2
+
