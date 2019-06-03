@@ -112,3 +112,16 @@
 ;;; if a circuit is made with these resistors,
 ;;; what effective resistance range do I actually observe? 
 
+;;; 2.16
+
+;;; Equivalent expressions lead to different results
+;;; because the inner procedures used are different.
+;;; The interval arithmetic we have formulated does not 
+;;; have the properties of a ring. We could try
+;;; and reformulate it so that it does (I have no idea
+;;; if this is possible, or how to go about it). 
+;;; One option is to throw out the idea interval arithmetic, 
+;;; and reformulate it in terms of centre-error arithmetic.
+;;; Center arithmetic is done normally, and error is calculated
+;;; by normal error calculation methods. I think that has
+;;; the structure of a ring.
