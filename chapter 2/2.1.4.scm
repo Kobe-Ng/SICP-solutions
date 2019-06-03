@@ -16,6 +16,12 @@
   (/ (- (upper-bound i) (lower-bound i)) 2))
 
 
+(define (add-interval x y)
+  (make-interval (+ (lower-bound x) (lower-bound y))
+                 (+ (upper-bound x) (upper-bound y))))
+
+
+
 ;;; 2.7
 
 (define (upper-bound z)
@@ -81,4 +87,21 @@
 ;;; I wrote simplified this on a separate sheet of paper.
 ;;; Assuming p1*p2 vanishes (percents are small),
 ;;; p3 = p1+p2
+
+;;; 2.14
+
+(define (par1 r1 r2)
+  (div-interval (mul-interval r1 r2)
+                (add-interval r1 r2)))
+
+(define (par2 r1 r2)
+  (let ((one (make-interval 1 1)))
+       (div-interval
+          one (add-interval (div-interval one r1)
+                            (div-interval one r2)))))
+
+;;; for r1 = 1000 +/- 1%, r2 = 2000+/- 2%,
+;;; par1 -> (646.9306930693069 . 686.936026936027)
+;;; par2 -> (660. . 673.3333333333334)
+;;;
 
