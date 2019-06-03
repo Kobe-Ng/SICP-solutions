@@ -10,6 +10,12 @@
     (make-interval (min p1 p2 p3 p4)
                    (max p1 p2 p3 p4))))
 
+(define (center i)
+  (/ (+ (lower-bound i) (upper-bound i)) 2))
+(define (width i)
+  (/ (- (upper-bound i) (lower-bound i)) 2))
+
+
 ;;; 2.7
 
 (define (upper-bound z)
@@ -21,7 +27,7 @@
 ;;; 2.8
 
 (define (sub-interval x y)
-  (make-interval (- (lower-bound x) (upper-bound y) )
+  (make-interval (- (lower-bound x) (upper-bound y))
   				       (- (upper-bound x) (lower-bound y))))
 
 ;;; 2.9
@@ -52,3 +58,12 @@
   ))
 
 ;;; 2.11 Skipped because it seems more tedious than instructional
+
+;;; 2.12
+
+(define (make-center-percent center percent)
+  (make-interval (- center (* center (/ percent 100.0))) (+ center (* center (/ percent 100.0)))))
+
+(define (percent interval)
+  (* 100 (/ (width interval) (center interval))))
+
