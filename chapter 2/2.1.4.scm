@@ -103,5 +103,12 @@
 ;;; for r1 = 1000 +/- 1%, r2 = 2000+/- 2%,
 ;;; par1 -> (646.9306930693069 . 686.936026936027)
 ;;; par2 -> (660. . 673.3333333333334)
-;;;
+
+;;; 2.15
+
+;;; It doesn't matter which function provides smaller bounds,
+;;; What matters is which procedure provides an answer
+;;; that is correct. i.e, what answers:
+;;; if a circuit is made with these resistors,
+;;; what effective resistance range do I actually observe? 
 
