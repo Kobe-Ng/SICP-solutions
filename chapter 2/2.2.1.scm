@@ -53,3 +53,17 @@
 
 (define (no-more? coin-values)
   (null? coin-values))
+
+;;; 2.20
+
+(define (same-parity first . rest)
+  (define (same-parity a b)
+    ; even + even, or odd + odd = even, odd + even = odd
+    (even? (+ a b)))
+  (define (iter count list1)
+    (if (= (length rest) count)
+      list1
+      (if (same-parity first (list-ref rest count))
+          (iter (+ count 1) (append list1 (list (list-ref rest count))))
+          (iter (+ count 1) list1))))
+  (cons first (iter 0 '())))
