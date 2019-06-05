@@ -97,4 +97,12 @@
 ;;; and an element eg.( '(), 5). It does not add the element
 ;;; to the empty set like he expects.
 
+;;; 2.23
+
+(define (for-each procedure items)
+  (if (null? items)
+    '()
+     (begin (procedure (car items))
+            (for-each procedure (cdr items)))))
+
 
