@@ -14,3 +14,8 @@
 ;;;       2  / \
 ;;;         3  4
 ;;; Box diagram not included
+
+;;; 2.25
+;;; car cdr car cdr cdr
+;;; car car
+;;; cadr cadr cadr cadr cadr cadr
