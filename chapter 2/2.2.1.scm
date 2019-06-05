@@ -17,19 +17,25 @@
     list2
     (cons (car list1) (append (cdr list1) list2))))
 
+(define (map proc items) 
+  (if (null? items)
+    '()
+    (cons (proc (car items))
+      (map proc (cdr items)))))
+
 ;;; 2.17
 
 (define (last-pair items)
   (list (list-ref items (- (length items) 1))))
 
 ;;; 2.18
-
 (define (reverse items)
   (define (reverse-iter count list1)
     (if (= (length items) count)
       list1
       (reverse-iter (+ count 1) (cons (list-ref items count) list1))))
   (reverse-iter 0 '()))
+
 
 ;;; 2.19
 
@@ -67,3 +73,17 @@
           (iter (+ count 1) (append list1 (list (list-ref rest count))))
           (iter (+ count 1) list1))))
   (cons first (iter 0 '())))
+
+;;; 2.21
+
+(define (square x)
+  (* x x))
+
+(define (square-list items) 
+  (if (null? items)
+    '()
+    (cons (square (car items))
+            (square-list (cdr items)))))
+
+(define (square-list-map items)
+  (map (lambda (x) (* x x)) items))
