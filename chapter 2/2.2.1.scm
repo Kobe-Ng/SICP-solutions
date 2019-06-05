@@ -87,3 +87,14 @@
 
 (define (square-list-map items)
   (map (lambda (x) (* x x)) items))
+
+;;; 2.22
+
+;;; Cons the way he does it adds the element to the front
+;;; of the list so it will be flipped
+
+;;; (Cons '(), element) creates a pair with the empty set
+;;; and an element eg.( '(), 5). It does not add the element
+;;; to the empty set like he expects.
+
+
