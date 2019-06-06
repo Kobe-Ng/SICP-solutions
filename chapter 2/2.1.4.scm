@@ -117,7 +117,7 @@
 ;;; Equivalent expressions lead to different results
 ;;; because the inner procedures used are different.
 ;;; The interval arithmetic we have formulated does not 
-;;; have the properties of a ring. We could try
+;;; have the properties of a field. We could try
 ;;; and reformulate it so that it does (I have no idea
 ;;; if this is possible, or how to go about it). 
 ;;; One option is to throw out the idea interval arithmetic, 
