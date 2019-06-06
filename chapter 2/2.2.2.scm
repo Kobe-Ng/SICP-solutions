@@ -36,3 +36,14 @@
             (iter (cdr items) (append (list (deep-reverse (car items))) acc))
             (iter (cdr items) (append (list (car items)) acc)))))
 (iter items '()))
+
+;;; 2.28
+
+(define (fringe tree)
+  (define (iter items acc)
+    (if (null? items)
+      acc
+      (if (list? (car items))
+        (iter (cdr items) (append acc (fringe (car items))))
+        (iter (cdr items) (append acc (list (car items)))))))
+  (iter tree '()))
