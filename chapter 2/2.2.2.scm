@@ -6,6 +6,13 @@
     (else (+ (count-leaves (car x))
              (count-leaves (cdr x))))))
 
+(define (make-branch length structure) 
+  (list length structure))
+
+
+(define (make-mobile left right
+ (list left right)))
+
 ;;; 2.24
 
 ;;; (count-leaves (list 1 (list 2 (list 3 4)))) results in 4
@@ -47,3 +54,19 @@
         (iter (cdr items) (append acc (fringe (car items))))
         (iter (cdr items) (append acc (list (car items)))))))
   (iter tree '()))
+
+;;; 2.29a
+
+(define (left-branch mobile)
+  (car mobile))
+
+(define (right-branch mobile)
+  (cadr mobile))
+
+(define (branch-length branch)
+  (car branch))
+
+(define (branch-structure branch)
+  (cadr branch))
+
+
