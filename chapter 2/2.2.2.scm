@@ -79,4 +79,22 @@
          (iter (left-branch branch)))))
   (iter mobile))
 
+;;; 2.29c
+
+;;; Check the torque of current mobile, then check left and right branches recursively.
+;;; if the left or right branch happens to be a number, just pass it off as true.
+;;; (This is necessary because we can't really encode what we pass down. Everything must
+;;; work on both branches, mobiles, and numbers when we hit the terminus. If this were typed,
+;;; I would imagine that the function would become incredibly long though.)
+(define (balanced? mobile)
+  (if (number? mobile)
+      true
+  (and (= (* (total-weight (branch-structure (left-branch mobile)))
+             (branch-length (left-branch mobile))
+          (* (total-weight (branch-structure (right-branch mobile)))
+             (branch-length (right-branch mobile)))))
+       (balanced? (branch-structure (left-branch mobile)))
+       (balanced? (branch-structure (right-branch mobile))))))
+
+
 
