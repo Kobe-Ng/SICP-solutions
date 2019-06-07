@@ -10,8 +10,8 @@
   (list length structure))
 
 
-(define (make-mobile left right
- (list left right)))
+(define (make-mobile left right)
+ (list left right))
 
 ;;; 2.24
 
@@ -68,5 +68,15 @@
 
 (define (branch-structure branch)
   (cadr branch))
+
+;;; 2.29b
+
+(define (total-weight mobile)
+  (define (iter branch)
+    (if (not (list? (branch-structure branch)))
+      (branch-structure branch)
+      (+ (iter (right-branch branch))
+         (iter (left-branch branch)))))
+  (iter mobile))
 
 
