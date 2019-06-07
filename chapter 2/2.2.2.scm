@@ -96,5 +96,9 @@
        (balanced? (branch-structure (left-branch mobile)))
        (balanced? (branch-structure (right-branch mobile))))))
 
-
+;;; 2.29d
+;;; Certain checks within the functions should be changed 
+;;; eg. checking if not list? changes to pair. This should probably be
+;;; changed to a function like mobile? which checks if an argument matches
+;;; the internal representation. Then we just have to change the selectors.
 
