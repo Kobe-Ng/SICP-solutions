@@ -130,5 +130,22 @@
               (function sub-tree)))
     tree))
 
+;;; 2.32
 
+(define (subsets s)
+  (if (null? s)
+    (list '())
+    (let ((rest (subsets (cdr s))))
+         (append rest (map (lambda (x) 
+                              (append (list (car s)) x))  
+                            rest)))))
+
+;;; The classic way to generate the power set is to realize that
+;;; we want the powerset of list with an element removed +
+;;; those exact subsets with the element added back in.
+;;; This method starts with '() and appends that with
+;;; a list with s (the last element) added back in.
+;;; Then it appends those two sets with the same sets except
+;;; the next last element is jammed in. This continues until
+;;; every subset is generated.
 
