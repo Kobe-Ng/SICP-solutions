@@ -102,3 +102,33 @@
 ;;; changed to a function like mobile? which checks if an argument matches
 ;;; the internal representation. Then we just have to change the selectors.
 
+
+;;; 2.30
+(define (square x)
+  (* x x))
+
+(define (square-tree tree)
+ (cond ((null? tree) '())
+       ((not (pair? tree)) (square tree))
+       (else (cons (square-tree (car tree))
+                   (square-tree (cdr tree))))))
+
+(define (square-tree2 tree) 
+  (map (lambda (sub-tree)
+          (if (pair? sub-tree) 
+              (square-tree2 sub-tree) 
+              (square sub-tree)))
+    tree))
+
+
+;;; 2.31
+
+(define (tree-map function tree)
+  (map (lambda (sub-tree)
+          (if (pair? sub-tree)
+              (tree-map function sub-tree)
+              (function sub-tree)))
+    tree))
+
+
+
