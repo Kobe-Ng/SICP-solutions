@@ -7,6 +7,13 @@
       (op (car sequence)
           (accumulate op initial (cdr sequence)))))
 
+ (define (enumerate-tree tree) 
+   (cond ((null? tree) '()) 
+         ((not (pair? tree)) (list tree)) 
+         (else (append (enumerate-tree (car tree)) 
+                       (enumerate-tree (cdr tree)))))) 
+
+
 ;;; 2.33
 
 (define (map p sequence)
@@ -23,3 +30,11 @@
                 (+ this-coeff (* x higher-terms)))
               0
               coefficient-sequence))
+
+;;; 2.35
+
+ (define (count-leaves t) 
+   (accumulate + 
+               0 
+               (map (lambda (x) 1)  
+                    (enumerate-tree t)))) 
