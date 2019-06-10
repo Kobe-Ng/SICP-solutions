@@ -16,6 +16,14 @@
 (define (dot-product v w)
       (accumulate + 0 (map* '() * v w)))
 
+(define (fold-left op initial sequence) 
+  (define (iter result rest)
+    (if (null? rest) 
+      result
+      (iter (op result (car rest))
+            (cdr rest))))
+  (iter initial sequence))
+
 ;;; 2.33
 
 (define (map-2 p sequence)
@@ -62,6 +70,17 @@
     (map (lambda (x)
             (matrix-*-vector cols x)) m)))
 
+;;; 2.38
+
+(define fold-right accumulate)
+
+(fold-right / 1 (list 1 2 3))      ; 3/2
+(fold-left / 1 (list 1 2 3))       ; 1/6
+(fold-right list '() (list 1 2 3)) ; (1 (2 (3 ())))
+(fold-left list '() (list 1 2 3))  ; (((() 1) 2) 3)
+
+;;; I'd imagine that the op must be commutative 
+;;; ie (op a b) = (op b a)
 
 
 
