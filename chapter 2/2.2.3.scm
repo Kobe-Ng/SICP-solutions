@@ -82,5 +82,14 @@
 ;;; I'd imagine that the op must be commutative 
 ;;; ie (op a b) = (op b a)
 
+;;; 2.39
+
+;;; I feel bad since I just kind of trial and errored
+;;; around combinations of appending lists and such until I got it.
+;;; TODO: actually understand what's going on.
+(define (reverse-right sequence)
+   (fold-right (lambda (x y) (append y (list x))) '() sequence))
+(define (reverse-left sequence)
+  (fold-left (lambda (x y) (cons y x)) '() sequence))
 
 
