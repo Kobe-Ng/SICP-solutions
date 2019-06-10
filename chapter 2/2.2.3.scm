@@ -13,10 +13,12 @@
          (else (append (enumerate-tree (car tree)) 
                        (enumerate-tree (cdr tree)))))) 
 
+(define (dot-product v w)
+      (accumulate + 0 (map* '() * v w)))
 
 ;;; 2.33
 
-(define (map p sequence)
+(define (map-2 p sequence)
   (accumulate (lambda (x y) (cons (p x) y)) '() sequence))
 (define (append seq1 seq2) 
   (accumulate cons seq2 seq1))
@@ -38,3 +40,28 @@
                0 
                (map (lambda (x) 1)  
                     (enumerate-tree t)))) 
+
+;;; 2.36
+
+(define (accumulate-n op init seqs) 
+  (if (null? (car seqs))
+      '()
+      (cons (accumulate op init (map car seqs))
+            (accumulate-n op init (map cdr seqs)))))
+
+;;; 2.37
+
+(define (matrix-*-vector m v) 
+  (map (lambda (x) (dot-product x v)) m))
+
+(define (transpose mat)
+  (accumulate-n (lambda (x y) (cons x y)) '() mat))
+
+(define (matrix-*-matrix m n)
+  (let ((cols (transpose n)))
+    (map (lambda (x)
+            (matrix-*-vector cols x)) m)))
+
+
+
+
