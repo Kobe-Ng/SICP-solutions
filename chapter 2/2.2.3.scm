@@ -15,3 +15,11 @@
   (accumulate cons seq2 seq1))
 (define (length sequence)
  (accumulate (lambda (x y) (+ 1 y)) 0 sequence))
+
+;;; 2.34
+
+(define (horner-eval x coefficient-sequence) 
+  (accumulate (lambda (this-coeff higher-terms) 
+                (+ this-coeff (* x higher-terms)))
+              0
+              coefficient-sequence))
