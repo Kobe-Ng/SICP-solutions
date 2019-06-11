@@ -24,6 +24,23 @@
             (cdr rest))))
   (iter initial sequence))
 
+(define (flatmap proc seq)
+  (accumulate append '() (map proc seq)))
+
+
+(define (prime? n)
+(= n (smallest-divisor n)))
+
+(define (smallest-divisor n) (find-divisor n 2))
+
+(define (find-divisor n test-divisor)
+ (cond ((> (square test-divisor) n) n)
+       ((divides? test-divisor n) test-divisor)
+       (else (find-divisor n (+ test-divisor 1))))) 
+
+(define (divides? a b) (= (remainder b a) 0))
+
+
 ;;; 2.33
 
 (define (map-2 p sequence)
@@ -91,5 +108,33 @@
    (fold-right (lambda (x y) (append y (list x))) '() sequence))
 (define (reverse-left sequence)
   (fold-left (lambda (x y) (cons y x)) '() sequence))
+
+
+;;; 2.40
+
+(define (enumerate-interval a b)
+  (define (iter count acc)
+    (if (> count b)
+        acc
+        (iter (+ 1 count) (append acc (list count)))))
+  (iter a '()))
+
+(define (unique-pairs n)
+  (flatmap (lambda (i)
+              (map (lambda (j) (list i j))
+                   (enumerate-interval 1 (- i 1))))
+           (enumerate-interval 1 n)))
+
+(define (make-pair-sum pair)
+  (list (car pair) (cadr pair) (+ (car pair) (cadr pair))))
+
+(define (prime-sum? pair)
+  (prime? (+ (car pair) (cadr pair))))
+
+(define (prime-sum-pairs n) 
+  (map make-pair-sum
+    (filter prime-sum? (unique-pairs n))))
+
+
 
 
