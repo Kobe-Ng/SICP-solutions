@@ -143,4 +143,44 @@
                    (enumerate-interval 1 (- (cadr pair) 1))))
            (unique-pairs n)))
 
+;;; 2.42
+
+(define (queens board-size) 
+  (define (queen-cols k)
+    (if (= k 0)
+        (list empty-board)
+        (filter
+          (lambda (positions) (safe? k positions))
+          (flatmap
+            (lambda (rest-of-queens)
+              (map (lambda (new-row)
+                      (adjoin-position
+                       new-row k rest-of-queens))
+                   (enumerate-interval 1 board-size)))
+            (queen-cols (- k 1))))))
+  (queen-cols board-size))
+
+(define empty-board '())
+
+(define (adjoin-position  new-row k rest-of-queens)
+  (append rest-of-queens (list new-row k)))
+
+(define (list-ref items n) 
+  (if (= n 0)
+    (car items)
+    (list-ref (cdr items) (- n 1))))
+
+(define (last-pair items)
+  (list (list-ref items (- (length items) 1))))
+
+(define (safe? k positions)
+  (not (attacked-by positions (last-pair positions))))
+
+;;; Define attacked by. A position is attacked 
+;;; by the other positions if it is found in the list of attacked
+;;; spots. To do this I need to generate a list of spots every
+;;; queen attacks. That can be done by creating a function
+;;; that returns the spots one queen attacks, and appending
+;;; them together.
+
 
