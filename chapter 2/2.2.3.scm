@@ -135,6 +135,12 @@
   (map make-pair-sum
     (filter prime-sum? (unique-pairs n))))
 
+;;; 2.41
 
+(define (unique-triples n)
+  (flatmap (lambda (pair)
+              (map (lambda (i) (append pair (list i)))
+                   (enumerate-interval 1 (- (cadr pair) 1))))
+           (unique-pairs n)))
 
 
