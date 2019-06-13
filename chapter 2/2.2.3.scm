@@ -159,28 +159,32 @@
                    (enumerate-interval 1 board-size)))
             (queen-cols (- k 1))))))
   (queen-cols board-size))
+;;; Last commit I made a comment about listing (and filtering)
+;;; The positions attacked by a queen, but it's much easier
+;;; to make a function that checks if you are attacked.
 
 (define empty-board '())
 
 (define (adjoin-position  new-row k rest-of-queens)
-  (append rest-of-queens (list new-row k)))
-
-(define (list-ref items n) 
-  (if (= n 0)
-    (car items)
-    (list-ref (cdr items) (- n 1))))
-
-(define (last-pair items)
-  (list (list-ref items (- (length items) 1))))
+  (append (list (cons new-row k)) rest-of-queens))
 
 (define (safe? k positions)
-  (not (attacked-by positions (last-pair positions))))
+  (define (attacked-by other-queens queen)
+    (if (null? other-queens)
+        #f
+        (if (or 
+              (same-horizantal queen (car other-queens))
+              (same-diagonal queen (car other-queens)))
+            #t
+            (attacked-by (cdr other-queens) queen))))
+  (not (attacked-by (cdr positions) (car positions))))
 
-;;; Define attacked by. A position is attacked 
-;;; by the other positions if it is found in the list of attacked
-;;; spots. To do this I need to generate a list of spots every
-;;; queen attacks. That can be done by creating a function
-;;; that returns the spots one queen attacks, and appending
-;;; them together.
+(define (same-horizantal queen-1 queen-2) 
+  (= (car queen-1) (car queen-2)))
+(define (same-diagonal queen-1 queen-2)
+;;; Diagonal implies that vertical difference in position
+;;; = horizantal difference in position 
+  (= (abs (- (car queen-1) (car queen-2)))
+     (abs (- (cdr queen-1) (cdr queen-2)))))
 
 
