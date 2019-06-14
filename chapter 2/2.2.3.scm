@@ -187,4 +187,8 @@
   (= (abs (- (car queen-1) (car queen-2)))
      (abs (- (cdr queen-1) (cdr queen-2)))))
 
+;;; 2.43
+;;; You end up in a recursive mess.
+;;; Not going to bother calculating this though.
+
 
