@@ -62,5 +62,18 @@
 (define (edge2-2 frame)
   (cdr (cdr frame)))
 
+;;; 2.48
+
+(define (make-seg from-origin segment)
+  (cons from-origin segment))
+
+(define (start-seg segment)
+  (car segment))
+
+(define (end-seg segment)
+  (let ((coordinate (add-vect (car segment) (cdr segment))))
+    (cons (xcor-vect coordinate) (ycor-vect coordinate))))
+
+
 
 
