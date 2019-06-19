@@ -14,3 +14,9 @@
   (cond ((and (null? a) (null? b)) #t)
         ((not (eq? (car a) (car b))) #f)
         (else (equal? (cdr a) (cdr b)))))
+
+;;; 2.55
+
+;;; The first quote makes the following characters evaluate as symbols
+;;; (quote (quote abracadabra)) = '(quote abracadabra) as a symbol
+;;; car then takes the first element of the list, quote.
