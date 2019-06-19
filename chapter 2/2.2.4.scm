@@ -111,6 +111,10 @@
                           (make-seg (make-vect 0 0) (make-vect 1 1))
                           (make-seg (make-vect 1 0) (make-vect 0 1)))))
 
+;;; 2.50 + 2.51 + 2.52
+;;; gosh these are really uninteresting.
+;;; Just a copy and paste job with a few different vectors... for 2.50, 2.51
+;;; 2.52 is actually very interesting in theory, but the exercise is boring
 
 
 
