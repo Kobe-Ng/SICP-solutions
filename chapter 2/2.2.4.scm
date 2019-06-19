@@ -74,6 +74,44 @@
   (let ((coordinate (add-vect (car segment) (cdr segment))))
     (cons (xcor-vect coordinate) (ycor-vect coordinate))))
 
+;;; 2.49
+
+(define (frame-coord-map frame)
+ (lambda (v)
+    (add-vect
+     (origin-frame frame)
+     (add-vect (scale-vect (xcor-vect v) (edge1-frame frame))
+               (scale-vect (ycor-vect v) (edge2-frame frame))))))
+
+(define (segments->painter segment-list)
+ (lambda (frame)
+  (for-each
+    (lambda (segment)
+      (draw-line
+        ((frame-coord-map frame)
+         (start-segment segment))
+        ((frame-coord-map frame)
+         (end-segment segment))))
+     segment-list)))
+
+;;;I don't believe this question is horribly interesting. I'll do a, and b
+
+;;; a
+;;; segment list is the unit square
+(define (frame-painter)
+  (segments->painter (list 
+                          (make-seg (make-vect 0 0) (make-vect 1 0))
+                          (make-seg (make-vect 1 0) (make-vect 1 1))
+                          (make-seg (make-vect 1 1) (make-vect 0 1))
+                          (make-seg (make-vect 0 1) (make-vect 0 0)))))
+
+;;; b
+(define (x-painter)
+  (segments->painter (list 
+                          (make-seg (make-vect 0 0) (make-vect 1 1))
+                          (make-seg (make-vect 1 0) (make-vect 0 1)))))
+
+
 
 
 
