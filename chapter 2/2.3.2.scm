@@ -77,4 +77,21 @@
 (define (multiplicand p)  
   (accumulate make-product 1 (cddr  p))) 
 
- 
+;;; 2.58a
+
+;;; just swap around cars and cadrs to account for the changing shape
+;;; no intent to rewrite everything
+
+;;; 2.58b
+
+;;; I think one would need to rewrite deriv or have a parser.
+
+
+
+
+
+
+
+
+
+
