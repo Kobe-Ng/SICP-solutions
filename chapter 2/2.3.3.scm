@@ -38,6 +38,13 @@
 ;;; In applications where we adjoin and make union
 ;;; sets very often the duplicate list has an advantage.
 
+;;; 2.61
+
+(define (adjoin-set x set)
+ (cond ((null? set) (append set (list x)))
+       ((< x (car set)) (cons x set))
+       ((= x (car set)) set)
+       (else (cons (car set) (adjoin-set x (cdr set))))))
 
 
 
