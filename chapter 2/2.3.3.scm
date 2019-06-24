@@ -117,6 +117,29 @@
 ;;; b
 ;;; O(n)
 
+;;; 2.65
+
+(define (tree->list-2 tree)
+  (define (copy-to-list tree result-list)
+   (if (null? tree)
+        result-list
+        (copy-to-list (left-branch tree)
+                      (cons (entry tree)
+                            (copy-to-list
+                              (right-branch tree)
+                              result-list)))))
+  (copy-to-list tree '()))
+
+(define (union-set-tree set1 set2)
+  (list->tree (union-set 
+                (tree->list-2 set1)
+                (tree->list-2 set2))))
+
+(define (intersection-set-tree set1 set2)
+  (list->tree (intersection-set 
+                (tree->list-2 set1)
+                (tree->list-2 set2))))
+
 
 
 
