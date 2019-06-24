@@ -65,7 +65,9 @@
 
 ;;; a The two trees should produce the same result
 
-
+;;; b Both implementations should reach the same amount of nodes,
+;;; but I'm not sure how the append will factor in here.
+ 
 
 
 
