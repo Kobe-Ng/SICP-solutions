@@ -60,7 +60,12 @@
                       (cons x1 (union-set (cdr set1) set2)))
                      ((< x2 x1)
                       (cons x2 (union-set set1 (cdr set2)))))))))
- 
+
+;;; 2.63
+
+;;; a The two trees should produce the same result
+
+
 
 
 
