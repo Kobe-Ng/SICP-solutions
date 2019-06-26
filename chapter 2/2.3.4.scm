@@ -40,20 +40,6 @@
         ((= bit 1) (right-branch branch))
         (else (error "bad bit: CHOOSE-BRANCH" bit))))
 
-(define (adjoin-set x set)
- (cond ((null? set) (list x))
-       ((< (weight x) (weight (car set))) (cons x set))
-       (else (cons (car set)
-                   (adjoin-set x (cdr set))))))
-
-(define (make-leaf-set pairs)
- (if (null? pairs)
-     '()
-     (let ((pair (car pairs)))
-          (adjoin-set (make-leaf (car pair)   ; symbol
-                                 (cadr pair)) ; frequency
-                      (make-leaf-set (cdr pairs))))))
-
 (define sample-tree (make-code-tree (make-leaf 'A 4)
                                     (make-code-tree
                                       (make-leaf 'B 2)
@@ -98,6 +84,28 @@
 
 (encode '(a d a b b c a) sample-tree)
 
+
+;;; 2.69
+(define (adjoin-set x set)
+ (cond ((null? set) (list x))
+       ((< (weight x) (weight (car set))) (cons x set))
+       (else (cons (car set)
+                   (adjoin-set x (cdr set))))))
+
+(define (make-leaf-set pairs)
+ (if (null? pairs)
+     '()
+     (let ((pair (car pairs)))
+          (adjoin-set (make-leaf (car pair)   ; symbol
+                                 (cadr pair)) ; frequency
+                      (make-leaf-set (cdr pairs))))))
+
+(define (successive-merge leaves)
+  (if (null? (cdr leaves))
+      (car leaves)
+      (successive-merge 
+        (adjoin-set (make-code-tree (car leaves) (cadr leaves))
+                    (cddr leaves)))))
 
 
 
