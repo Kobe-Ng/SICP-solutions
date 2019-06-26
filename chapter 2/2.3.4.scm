@@ -66,3 +66,52 @@
 (decode sample-message sample-tree)
 ;;; a d a b b c a
 
+
+; 2.68
+
+(define (encode message tree)
+ (if (null? message)
+     '()
+     (append (encode-symbol (car message) tree)
+             (encode (cdr message) tree))))
+
+(define (encode-symbol message tree)
+  (define (iter message tree bit-list)
+    (if (leaf? tree)
+        bit-list
+        (cond ((contains message (symbols (left-branch tree))) 
+                (iter message
+                     (left-branch tree)
+                     (append bit-list '(0))))
+              ((contains message (symbols (right-branch tree)))
+                (iter message
+                     (right-branch tree)
+                     (append bit-list '(1))))
+              (else (error "bad message: ENCODE-SYMBOL" message)))))
+  (iter message tree '()))
+
+(define (contains x list)
+    (cond 
+        ((null? list) #f)
+        ((eq? x (car list)) #t)
+        (else (contains x (cdr list)))))
+
+(encode '(a d a b b c a) sample-tree)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
