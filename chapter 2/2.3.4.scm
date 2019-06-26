@@ -107,11 +107,34 @@
         (adjoin-set (make-code-tree (car leaves) (cadr leaves))
                     (cddr leaves)))))
 
+(define (generate-huffman-tree pairs)
+ (successive-merge (make-leaf-set pairs)))
+;;; 2.70
 
+(define tree-270 (generate-huffman-tree '((A 2)
+                                          (GET 2)
+                                          (SHA 3)
+                                          (WAH 1)
+                                          (BOOM 1)
+                                          (JOB 2)
+                                          (NA 16)
+                                          (YIP 9))))
 
+(encode 
+  '(Get a job
+    Sha na na na na na na na na
+    Get a job
+    Sha na na na na na na na na
+    Wah yip yip yip yip yip yip yip yip yip
+    Sha boom)
+  tree-270)
 
-
-
+;;; 1 1 1 1 1 1 1 0 0 1 1 1 1 0 1 1 1 0 0 0 0 0 
+;;; 0 0 0 0 1 1 1 1 1 1 1 0 0 1 1 1 1 0 1 1 1 0
+;;; 0 0 0 0 0 0 0 0 1 1 0 1 1 1 0 1 0 1 0 1 0 1
+;;; 0 1 0 1 0 1 0 1 0 1 1 1 0 1 1 0 1 0
+;;; 84 bits
+;;; 3*36 = 108 bits for a fix length code
 
 
 
