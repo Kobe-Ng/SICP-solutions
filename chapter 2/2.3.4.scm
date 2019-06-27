@@ -142,6 +142,13 @@
 ;;; most freqent symbol requires 1 bit
 ;;; least frequent symbol requires n-1 bit
 
+;;; 2.72
+
+;;; The least amount of steps it takes is n
+;;; The most is n + n-1 + n-2 + n-3....
+;;; O(nlogn) 
+;;; max time is O(n^2)
+;;; min time is O(n)
 
 
 
