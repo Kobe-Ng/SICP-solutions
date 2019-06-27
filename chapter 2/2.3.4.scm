@@ -109,6 +109,7 @@
 
 (define (generate-huffman-tree pairs)
  (successive-merge (make-leaf-set pairs)))
+
 ;;; 2.70
 
 (define tree-270 (generate-huffman-tree '((A 2)
@@ -136,8 +137,10 @@
 ;;; 84 bits
 ;;; 3*36 = 108 bits for a fix length code
 
-
-
+;;; 2.71
+;;; Tree sketched on paper
+;;; most freqent symbol requires 1 bit
+;;; least frequent symbol requires n-1 bit
 
 
 
