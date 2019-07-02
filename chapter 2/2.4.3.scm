@@ -44,3 +44,24 @@
 
 (define (=number? exp num)
 (and (number? exp) (= exp num)))
+
+;;; c
+
+(define (install-exponentiation-package)
+  (define (make-exponentiation b e)
+    (cond ((=number? e 0) 1)
+          ((=number? e 1) b)
+          ((and (number? b) (number? e)) (expt b e))
+          (else (list '** b e))))
+  (define (base operands) (car operands))
+  (define (exponent operands) (cadr operands))
+  (define (deriv-exponentiation operands var)
+    (make-product
+            (make-product (exponent exp)
+                          (make-exponentiation (base exp)
+                                               (make-sum
+                                                 (exponent exp)
+                                                 '-1)))
+            (deriv (base exp) var)))
+  (put 'deriv '(exponentiation) deriv-exponentiation)
+  'done)
