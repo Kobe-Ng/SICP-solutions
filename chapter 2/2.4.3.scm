@@ -71,3 +71,16 @@
 ;;; a
 (define (get-record division employee-name) 
   ((get division 'record) employee-name)) 
+
+;;; b
+(define (get-salary division record) 
+  ((get division 'salary) record)) 
+  
+
+
+
+
+
+
+
+
