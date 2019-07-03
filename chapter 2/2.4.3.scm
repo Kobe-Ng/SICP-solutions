@@ -65,3 +65,9 @@
             (deriv (base exp) var)))
   (put 'deriv '(exponentiation) deriv-exponentiation)
   'done)
+
+;;; 2.74a
+
+;;; a
+(define (get-record division employee-name) 
+  ((get division 'record) employee-name)) 
