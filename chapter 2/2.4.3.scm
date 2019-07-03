@@ -97,10 +97,32 @@
          (else (error "Unknown op: MAKE-FROM-MAG-ANG" op))))
   dispatch)
 
+;;; 2.76
 
+;;; explicit dispatch
 
+;;; To add a new type every function must have the
+;;; dispatch cond accomodate the new types.
+;;; Every new operation is written on it's own
+;;; no changes to previous types are necessary.
 
+;;; data-directed style
 
+;;; To add a new type all we have to do is add
+;;; in the appropriate column (no changes to existing code).
+;;; To add in a new operator we fill in the appropriate
+;;; row (change existing code).
+
+;;; message passing
+
+;;; Adding a new operation requires updating every type
+;;; Adding a new type is trivially easy.
+
+;;; Message passing and data directed style are better
+;;; if many new types are being added as adding types
+;;; doesn't require one to jump around code.
+;;; Explicit dispatch is superious if one is adding
+;;; a lot of operations.
 
 
 
