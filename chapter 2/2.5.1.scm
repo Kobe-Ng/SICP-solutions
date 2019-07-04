@@ -125,8 +125,33 @@
         (else (error "Bad tagged datum: TYPE-TAG" datum))))
 
 
+;;; 2.79
 
+(define (equ? x y) (apply-generic 'equ? x y))
 
+;;; in the install-scheme-package
+
+(put 'equ? '(scheme-number scheme-number)
+    (lambda (x y) (tag (equal? x y))))
+
+;;; in the rational package
+
+;;; a and b are always reduced in the package
+;;; this could arguably be made more bullet proof
+(define (equal-rat? a b)
+  (and (equal? (numer a) (number b))
+       (equal? (denom a) (denom b))))
+
+ (put 'equ? '(rational rational)
+    (lambda (x y) (tag (equal-rat? x y))))
+
+ ;;; in the complex package
+(define (equal-complex? z1 z2)
+  (and (equal? (magnitude z1) (magnitude z2))
+       (equal? (angle z1) (angle z2))))  
+
+ (put 'equ? '(complex complex)
+  (lambda (z1 z2) (tag (equal-complex? z1 z2))))
 
 
 
