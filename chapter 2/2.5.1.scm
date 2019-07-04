@@ -107,7 +107,22 @@
 ;;; that is complex. It will then go in and rip off
 ;;; the tag for a number in polar or rectangular form
 
+;;; 2.78
 
+
+(define (attach-tag type-tag contents)
+  (if (number? contents)
+      contents
+      (cons type-tag contents)))
+
+(define (type-tag datum)
+  (cond ((number? datum) datum)
+        ((pair? datum) (car datum))
+        (else (error "Bad tagged datum: TYPE-TAG" datum))))
+(define (contents datum)
+  (cond ((number? datum) datum)
+        ((pair? datum) (cdr datum))
+        (else (error "Bad tagged datum: TYPE-TAG" datum))))
 
 
 
