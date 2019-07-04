@@ -154,7 +154,12 @@
   (lambda (z1 z2) (tag (equal-complex? z1 z2))))
 
 
+;;; 2.80
 
+;;; This is roughly the same as above.
+;;; for scheme-number use equal? 0 a
+;;; for rational check the numerator
+;;; for complex check magnitude
 
 
 
