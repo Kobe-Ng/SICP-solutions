@@ -38,3 +38,23 @@
                                      (list op type-tags)))))))
               (error "No method for these types"
 (list op type-tags)))))))
+
+;;; 2.82
+
+;;; wow this question is tough
+
+;;; 2.83
+
+(define (raise x)
+  (apply-generic 'raise x))
+
+(put 'raise 'integer
+  (lambda (x) (tag (make-rat x 1))))
+
+ (put 'raise 'rational 
+          (lambda (x) (tag (make-real (/ (numer x) (denom x)))))) 
+  
+ ;; add into real package 
+ (put 'raise 'real 
+          (lambda (x) (tag (make-from-real-imag x 0)))) 
+
