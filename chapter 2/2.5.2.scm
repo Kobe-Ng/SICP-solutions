@@ -56,5 +56,31 @@
   
  ;; add into real package 
  (put 'raise 'real 
-          (lambda (x) (tag (make-from-real-imag x 0)))) 
+          (lambda (x) (tag (make-from-real-imag x 0))))
+
+;;; 2.84
+
+(define (apply-generic op . args)
+  (let ((type-tags (map type-tag args)))
+    (let ((proc (get op type-tags)))
+      (if proc
+          (apply proc (map contents args))
+          (let ((a1 (car args))
+                (a2 (cadr args)))
+                (cond ((raise-up a1 a2)
+                       (apply-generic op (raise-up a1 a2) a2))
+                      ((raise-up a2 a1)
+                       (apply-generic op (raise-up a2 a1) a1))
+                      (else
+                        (error "No method for these types"))))))))
+
+(define (raise-up from to)
+  (let ((type-from (type-tag from))
+        (type-to (type-tag to)))
+    (if (equal? type-from type-to)
+        from 
+        (let ((upper) (raise from))
+          (if upper
+              (raise-to upper to)
+              #f))))) 
 
