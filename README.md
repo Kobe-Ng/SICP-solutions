@@ -1,3 +1,3 @@
-# A collection of my solutions to SICP exercises that I choose to do.
-This will not be a complete solution guide as some exercises may be skipped or not be associated with code. I expect that these solutions will not be optimal or the most simple. I should not be so sloppy but they may even be incorrect, so I do not recommend
-that you use this as a guide.
+# A collection SICP Solutions
+Roughly done code used for SICP solutions. Not every exercise is done.
+Code and commits are rough just because it's a personal project I'm not intending for anyone else to use.
