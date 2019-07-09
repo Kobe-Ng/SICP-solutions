@@ -13,3 +13,6 @@
 
 (define (subtract-poly p1 p2)
   (add-poly L1 (make-poly (variable p2) (negate-terms (term-list p2)))))
+
+;;; I'm fairly sick of this chapter, I'm moving on to chapter 3
+;;; I might come back for this later
