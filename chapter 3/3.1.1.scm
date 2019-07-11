@@ -19,3 +19,24 @@
             (else (begin (set! counter (+ counter 1))
                          (f m)))))
 dispatch))
+
+;;; 3.3
+
+(define (make-account balance password)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance (- balance amount))
+                     balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+          balance)
+  (define (dispatch m pass)
+    (cond ((not (eq? pass password)) 
+              ; lambda to absorb the input so an error isn't thrown
+              (lambda (x) (display "incorrect password")))
+          ((eq? m 'withdraw) withdraw)
+          ((eq? m 'deposit) deposit)
+          (else (error "Unknown request: MAKE-ACCOUNT"
+                  m))))
+dispatch)
