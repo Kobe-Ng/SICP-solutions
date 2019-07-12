@@ -43,7 +43,6 @@ dispatch)
 
 ;;; 3.4
 
-
 (define (make-account balance password)
   (let ((password-counter 0))
     (define (withdraw amount)
