@@ -34,7 +34,7 @@ dispatch))
   (define (dispatch m pass)
     (cond ((not (eq? pass password)) 
               ; lambda to absorb the input so an error isn't thrown
-              (lambda (x) (display "incorrect password")))
+              (lambda (x) '"incorrect password"))
           ((eq? m 'withdraw) withdraw)
           ((eq? m 'deposit) deposit)
           (else (error "Unknown request: MAKE-ACCOUNT"
