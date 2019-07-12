@@ -40,3 +40,38 @@ dispatch))
           (else (error "Unknown request: MAKE-ACCOUNT"
                   m))))
 dispatch)
+
+;;; 3.4
+
+
+(define (make-account balance password)
+  (let ((password-counter 0))
+    (define (withdraw amount)
+      (if (>= balance amount)
+          (begin (set! balance (- balance amount))
+                       balance)
+          "Insufficient funds"))
+    (define (deposit amount)
+      (set! balance (+ balance amount))
+            balance)
+    (define (dispatch m pass)
+      (cond ((not (eq? pass password)) 
+                ; lambda to absorb the input so an error isn't thrown
+                (lambda (x)
+                 (begin
+                  (set! password-counter (+ 1 password-counter))
+                  (if (equal? password-counter 7)
+                    (call-police)
+                    '"incorrect password"))))
+            ((eq? m 'withdraw) 
+              (begin (set! password-counter 0)
+                     withdraw))
+            ((eq? m 'deposit)
+             (begin (set! password-counter 0)
+                     deposit))
+            (else (error "Unknown request: MAKE-ACCOUNT"
+                    m))))
+dispatch))
+
+
+
