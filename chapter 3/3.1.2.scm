@@ -30,3 +30,18 @@
           (* y y))
         1))
   (monte-integral in-circle? -1.0 1.0 -1.0 1.0 n))
+
+;;; 3.6
+
+(define (rand x)
+  (let ((x rand-init))
+    (define (reset n)
+      (set! x n))
+    (define (generate)
+      (begin (set! x (rand-update x))
+              x))
+    (define (dispatch m)
+      (cond ((eq? m 'generate) generate)
+            ((eq? m 'reset) reset)
+            (else (error "Unknown request: RAND" m)))
+dispatch))
