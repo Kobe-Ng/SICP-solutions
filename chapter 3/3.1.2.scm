@@ -43,7 +43,14 @@
     (define (dispatch m)
       (cond ((eq? m 'generate) generate)
             ((eq? m 'reset) reset)
-            (else (error "Unknown request: RAND" m)))
-dispatch)))
+            (else (error "Unknown request: RAND" m))))
+    dispatch))
 
+;;; 3.8
+
+(define f
+  (let ((x -0.5))
+    (lambda (n) 
+      (cond ((equal? n 1) (set! x 0.5)))
+      x)))
 
