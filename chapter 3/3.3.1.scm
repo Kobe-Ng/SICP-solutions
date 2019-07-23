@@ -10,3 +10,9 @@
 ;;; 3.13
 
 ;;; The interpreter goes into an infinite loop
+
+;;; 3.14
+
+;;; It seems like the procedure reverses x
+;;; The original list is changed into the
+;;; first element of the list
