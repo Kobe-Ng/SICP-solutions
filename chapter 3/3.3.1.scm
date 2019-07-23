@@ -25,3 +25,10 @@
 ;;; ((wow b) wow b). For z2, the two elements a
 ;;; in the list are distinct, so the result is 
 ;;; ((wow b) a b). That second a is not changed.
+
+;;; 3.16
+;;; '(a b c) provides a value of 3
+;;; '((a b) c) provides a value of 4
+;;; '(((a) b) (c) d) provides a value of 7
+;;; ignoring the box structure shennanigans,
+;;; this procedure is quite awful
