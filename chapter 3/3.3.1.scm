@@ -32,3 +32,20 @@
 ;;; '(((a) b) (c) d) provides a value of 7
 ;;; ignoring the box structure shennanigans,
 ;;; this procedure is quite awful
+
+;;; 3.17
+
+(define (count-pairs x) 
+   (let ((encountered '())) 
+     (define (iter x) 
+       (if (or (not (pair? x)) (memq x encountered)) 
+         0 
+         (begin 
+           (set! encountered (cons x encountered)) 
+           (+ (iter (car x)) 
+              (iter (cdr x)) 
+              1)))) 
+   (helper x))) 
+
+;;; 3.18
+
